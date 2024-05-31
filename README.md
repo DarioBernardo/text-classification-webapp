@@ -1,5 +1,5 @@
-# text-classification-webapp
-Simple text classification into predefined classes using LLMs. The application is build as a webapp using Flask. It also contains a simple client to interact with the webapp.
+# Text Classification WebApp
+Simple text classification into predefined classes using LLMs. The application is build as a webapp using Flask, a messaging system with Redis, everything organised with Docker compose. It also contains a simple client to interact with the webapp.
 
 ## Architecture
 TODO
