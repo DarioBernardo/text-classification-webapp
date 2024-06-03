@@ -48,6 +48,9 @@ def form_request(query: str, classes: List[Class], options: Options) -> dict:
 
 def make_request(payload: dict) -> dict:
     response = classify_text_polling(text=payload["query"], options=payload["options"], classes=payload["classes"])
+    print(f"Query: {payload['query']}")
+    if "reasoning" in response:
+        print(f"Reasoning: {response['reasoning']}")
     return response
 
 
