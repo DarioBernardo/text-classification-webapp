@@ -9,16 +9,16 @@ logger = setup_logger(__name__)
 
 class OpenAILanguageModel:
 
-    def __init__(self, model_name: str):
+    def __init__(self, model_name: str, prompts_dir: str = "."):
         self.model_name = model_name
         self.client = OpenAI(
             # Defaults to os.environ.get("OPENAI_API_KEY")
             )
 
-        with open("prompt_single_class.txt", "r") as file:
+        with open(f"{prompts_dir}/prompt_single_class.txt", "r") as file:
             self.prompt_single_class = file.read()
 
-        with open("prompt_multiclass.txt", "r") as file:
+        with open(f"{prompts_dir}/prompt_multiclass.txt", "r") as file:
             self.prompt_multi_class = file.read()
 
 

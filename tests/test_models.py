@@ -11,13 +11,13 @@ from models import OpenAILanguageModel
 
 class TestOpenAILanguageModel(unittest.TestCase):
 
-    @patch('web.models.OpenAI')
-    @patch('web.models.extract_response')
+    @patch('models.OpenAI')
+    @patch('models.extract_response')
     def test_classify_text_mock(self, mock_extract_response, mock_openai):
         # Set the return value of extract_response
         mock_extract_response.return_value = {'result': 'class_name', 'reasoning': 'reason for the classification'}
 
-        model = OpenAILanguageModel('gpt-3.5-turbo', prompt_path='web/prompt.txt')
+        model = OpenAILanguageModel('gpt-3.5-turbo', prompts_dir='worker')
         text = "This is a test text"
         options = {"multilabel": True, "show_reasoning": True}
         classes = [
@@ -28,7 +28,7 @@ class TestOpenAILanguageModel(unittest.TestCase):
         temperature = 0.5
         debug = True
 
-        result = model.classify_text(text, options, classes, temperature, debug)
+        result = model.classify_text(text, options, classes, temperature)
         self.assertEqual(result, {'result': 'class_name', 'reasoning': 'reason for the classification'})
 
 
@@ -36,7 +36,7 @@ class TestOpenAILanguageModel(unittest.TestCase):
     def test_classify_test_for_real_single_class(self):
         #### NOTE: This test will fail because the OpenAI API key is not set ###
         # You can set the OPENAI_API_KEY environment variable to your API key to run this test
-        model = OpenAILanguageModel('gpt-3.5-turbo')
+        model = OpenAILanguageModel('gpt-3.5-turbo', prompts_dir='worker')
         classes = [
             {
                 "class_id": "Y1",
@@ -63,7 +63,7 @@ class TestOpenAILanguageModel(unittest.TestCase):
     def test_classify_test_for_real_multiclass(self):
         #### NOTE: This test will fail because the OpenAI API key is not set ###
         # You can set the OPENAI_API_KEY environment variable to your API key to run this test
-        model = OpenAILanguageModel('gpt-3.5-turbo')
+        model = OpenAILanguageModel('gpt-3.5-turbo', prompts_dir='worker')
         classes = [
             {
                 "class_id": "I1",
