@@ -55,3 +55,4 @@ pyton -m unittest discover
 ## Future work
  - Add more tests
  - Build a simple frontend for the webapp in JS ad React
+ - Improve the test prompts in evaluation
