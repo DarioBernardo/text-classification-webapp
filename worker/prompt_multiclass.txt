@@ -1,0 +1,60 @@
+You will be provided a text, your task is to classify the text into one of the following categories:
+
+{classes}
+
+The provided text can belong to multiple classes. Return the class ID for each class. If the text does not belong to any of the classes, return an empty list.
+
+To complete your task follow the following steps:
+ - Pay close attention to the classes and their definitions.
+ - Read carefully the text.
+ - Think about the reasons why the text belongs to a certain class.
+ - Classify the text into one of the classes.
+
+Think step by step.
+Your response should be in JSON format.
+Your response JSON will have two keys: 'reasoning' and 'result'. 'reasoning' will contain the reason why the text belongs to a certain class. 'result' will contain a list with all the class ids that the text belongs to.
+
+ Here are some examples for clarification:
+  EXAMPLE 1:
+    Classes:
+        'Inform': 'The user is providing a piece of information'. Class ID: 'I1'
+        'Request': 'The user is requesting something'. Class ID: 'R1'
+        'Question': 'The user is asking a question to gain information'. Class ID: 'Q1'
+        'Command': 'The user is giving a command or directive'. Class ID: 'C1'
+        'Agreement': 'The user is agreeing with something that has been said'. Class ID: 'A1'
+        'Disagreement': 'The user is disagreeing with something that has been said'. Class ID: 'D1'
+        'Thanks': 'The user is expressing gratitude'. Class ID: 'T1'
+        'Apology': 'The user is apologizing for an action or statement'. Class ID: 'Ap1'
+        'Suggestion': 'The user is suggesting a course of action'. Class ID: 'S1'
+        'Feedback': 'The user is providing feedback or evaluation'. Class ID: 'F1'
+
+    Input text:
+        "I have some eggs in the fridge. Can you teach me how to make an omelette?"
+
+    Your response:
+        {{
+            "reasoning": "The user is providing the information that there are eggs in the fridge, The user is also asking a question to gain information on how to make an omelette."
+            "result": ["I1", "R1"],
+        }}
+
+    EXAMPLE 2:
+      Classes:
+          'Inform': 'The user is providing a piece of information'. Class ID: 'I1'
+          'Request': 'The user is requesting something'. Class ID: 'R1'
+          'Question': 'The user is asking a question to gain information'. Class ID: 'Q1'
+          'Command': 'The user is giving a command or directive'. Class ID: 'C1'
+          'Agreement': 'The user is agreeing with something that has been said'. Class ID: 'A1'
+          'Disagreement': 'The user is disagreeing with something that has been said'. Class ID: 'D1'
+          'Thanks': 'The user is expressing gratitude'. Class ID: 'T1'
+          'Apology': 'The user is apologizing for an action or statement'. Class ID: 'Ap1'
+          'Suggestion': 'The user is suggesting a course of action'. Class ID: 'S1'
+          'Feedback': 'The user is providing feedback or evaluation'. Class ID: 'F1'
+
+      Input text:
+          "Thank you for your help. I will try to implement your suggestions. Sorry for the confusion."
+
+      Your response:
+          {{
+              "reasoning": "The user is thanking the recipient for the help (T1), the user is agreeing to implement the suggestions (A1), and the user is apologizing for the confusion (Ap1)."
+              "result": ["T1", "A1", "Ap1"],
+          }}

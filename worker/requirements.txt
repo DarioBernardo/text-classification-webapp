@@ -1,1 +1,2 @@
 redis
+openai==1.30.5

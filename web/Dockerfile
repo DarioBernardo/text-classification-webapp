@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application.
 COPY app.py .
+COPY SCHEMAS.py .
 
 # Command to run the application.
-CMD ["gunicorn", "-b", "0.0.0.0:5050", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"]
