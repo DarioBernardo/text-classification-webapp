@@ -26,10 +26,26 @@ class TestOpenAILanguageModel(unittest.TestCase):
             {"class_id": "3", "class_name": "Class 3", "class_description": "This is class 3"}
         ]
         temperature = 0.5
-        debug = True
-
         result = model.classify_text(text, options, classes, temperature)
         self.assertEqual(result, {'result': 'class_name', 'reasoning': 'reason for the classification'})
+
+    @patch('models.OpenAI')
+    @patch('models.extract_response')
+    def test_classify_text_mock_no_reasoning(self, mock_extract_response, mock_openai):
+        # Set the return value of extract_response
+        mock_extract_response.return_value = {'result': 'class_name', 'reasoning': 'reason for the classification'}
+
+        model = OpenAILanguageModel('gpt-3.5-turbo', prompts_dir='worker')
+        text = "This is a test text"
+        options = {"multilabel": True, "show_reasoning": False}
+        classes = [
+            {"class_id": "1", "class_name": "Class 1", "class_description": "This is class 1"},
+            {"class_id": "2", "class_name": "Class 2", "class_description": "This is class 2"},
+            {"class_id": "3", "class_name": "Class 3", "class_description": "This is class 3"}
+        ]
+        temperature = 0.5
+        result = model.classify_text(text, options, classes, temperature)
+        self.assertEqual(result, {'result': 'class_name'})
 
 
     @unittest.skip("This test will fail if the OpenAI API key is not set")

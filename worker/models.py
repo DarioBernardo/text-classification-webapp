@@ -34,8 +34,6 @@ class OpenAILanguageModel:
 
         logger.debug(f"Options: {options}")
 
-        reasoning = options.get("reasoning", True)
-
         # Organise the classes for the prompt
         classes_string = []
         for c in classes:
@@ -77,9 +75,12 @@ class OpenAILanguageModel:
                     messages = messages
                 )
 
-                return extract_response(response)
-
-                # return {'reasoning': 'The text mentions a request for a scoop of vanilla and a scoop of chocolate, indicating a desire for ice cream flavors made with real ingredients. Vanilla ice cream is made with real Madagascan vanilla, and chocolate ice cream is made with real chocolate.', 'result': ['V1']}
+                json_response =  extract_response(response)
+                reasoning = options.get("show_reasoning", True)
+                if reasoning:
+                    return json_response
+                else:
+                    return {'result': json_response['result']}
             except JSONDecodeError as e:
                 print(f"Error decoding the response: {e}, number of attempts left: {max_number_of_attempts}")
                 max_number_of_attempts -= 1
