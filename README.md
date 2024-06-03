@@ -24,6 +24,7 @@ The client is a simple python script that sends a request to the webapp to class
 ### Load test
 I have created a simple load test using `locust` to test the performance of the webapp. The test is located in the `tests` directory. To run the test, you need to install `locust` using the following command:
 ```bash
+cd tests
 pip install locust
 ```
 Then, you can run the test using the following command:
