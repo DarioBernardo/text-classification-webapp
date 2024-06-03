@@ -5,7 +5,13 @@ Simple text classification into predefined classes using LLMs. The application i
 TODO
 
 ## Launch the webapp
-To launch the webapp, you need to have `Docker` installed on your machine. You can launch the server using the following command:
+To launch the webapp, you need to have `Docker` installed on your machine. 
+First create a `.env` file in the root directory of the project and add you OPENAI_API_KEY variable:
+```makefile
+OPENAI_API_KEY=sk-...
+DEBUG=False
+```
+Then you can launch the server using the following command:
 ```bash
 docker-compose up --build
 ```
@@ -22,7 +28,7 @@ pip install locust
 ```
 Then, you can run the test using the following command:
 ```bash
-locust --host=http://localhost:5050
+locust --host=http://localhost:8000
 ```
 After running the command, you can open the browser and go to `http://localhost:8089` to start the test.
 I have tested the webapp using my local machine and tested the performance of the webapp with requests of 1000 requests per second. The webapp was able to handle the requests without any issues.
