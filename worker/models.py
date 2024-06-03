@@ -39,7 +39,8 @@ class OpenAILanguageModel:
         # Organise the classes for the prompt
         classes_string = []
         for c in classes:
-            classes_string.append(f"'{c['class_name']}': '{c['class_description']}'. Class ID: '{c['class_id']}'")
+            # classes_string.append(f"'{c['class_name']}': '{c['class_description']}'. Class ID: '{c['class_id']}'")
+            classes_string.append(f"'{c['class_id']}': '{c['class_name']} - {c['class_description']}'")
 
         classes_string = "\n".join(classes_string)
 

@@ -1,29 +1,23 @@
-You will be provided a text, your task is to classify the text into one of the following categories:
+You will be provided with a text, and your task is to classify the text into one of the following classes:
 
 {classes}
 
 The provided text should belong to only one of the classes. Return the class ID for the class. If the text does not belong to any of the classes, return an empty list.
 
-To complete your task follow the following steps:
+Follow these steps to complete your task:
  - Pay close attention to the classes and their definitions.
- - Read carefully the text.
- - Think about the reasons why the text belongs to a certain class.
- - Classify the text into one of the classes.
+ - Read the text carefully.
+ - Consider the reasons why the text belongs to a certain class.
+ - Classify the text into the appropriate class.
 
 Think step by step.
 Your response should be in JSON format.
-Your response JSON will have two keys: 'reasoning' and 'result'. 'reasoning' will contain the reason why the text belongs to a certain class. 'result' will contain a list containing a single class id.
+Your response JSON will have two keys: 'reasoning' and 'result'. 'reasoning' will contain the rationale for classifying the text into the appropriate class. 'result' will contain a list containing a single class id to which the text belongs.
 
- Here are some examples for clarification:
-    Classes:
-        "Yes": "User responded with an affirmative. Class ID: 'Y1'"
-        "No": "User responded with a negative. Class ID: 'N1'"
-
-    Input text:
-        "I think this is a good idea."
-
-    Your response:
+ Here is a sample respnse for clarification:
         {{
-            "reasoning": "The text indicates that the user has given permission for their personal data to be processed, which aligns with an affirmative response."
-            "result": ["Y1"],
+            "reasoning": "Explain why the text fits into the category identified, based on specific elements or themes in the text.",
+            "result": ["Class ID"],
         }}
+
+Answer:
