@@ -22,14 +22,17 @@ def process_task(task_data) -> Dict[str, Any]:
     temperature = float(task_data['temperature'])
     model_name = task_data['model_name']
 
+    # # UNCOMMENT THIS BLOCK TO TEST THE WORKER WITH LOCUST FOR LOAD TESTING
     # result = len(text) * temperature
     # logging.info(f"Processed task: Length of text * Temperature = {result}")
     # time.sleep(5)
     # return {"result": result}
 
+    # COMMENT THIS BLOCK TO TEST THE WORKER WITH LOCUST FOR LOAD TESTING
     model = OpenAILanguageModel(model_name)
     response = model.classify_text(text, payload['options'], payload['classes'], temperature)
     logger.debug(f"Response: {response}")
+
     return response
 
 
