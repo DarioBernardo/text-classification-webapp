@@ -1,13 +1,24 @@
 from locust import HttpUser, task, between
+import random
+import string
+
+
+def generate_random_string(length):
+    # Choose characters from letters and digits
+    characters = string.ascii_letters + string.digits
+    # Generate a random string of the desired length
+    random_string = ''.join(random.choices(characters, k=length))
+    return random_string
 
 class WebsiteUser(HttpUser):
     wait_time = between(1, 2)  # Simulate a wait of 1-2 seconds between tasks
 
     @task
     def classify_text(self):
+        long_random_string = generate_random_string(50)
         data = {
             'data': {
-                'query': "This is a test query",
+                'query': "This is a test query. Random String to avoid cache: " + long_random_string,
                 'options': {"multilabel": True, "show_reasoning": True},
                 'classes': []
             },
