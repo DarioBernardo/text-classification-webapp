@@ -4,11 +4,11 @@ Simple text classification into predefined classes using LLMs. The application i
 ## Architecture
 ![architectural diagram](architecture.png)
 
-This is a sample web application is designed around a text classification task using Language Models (LLMs). The application is built using Python and Flask for the web server, Redis for the messaging system, and Docker/Docker-compose for containerization and orchestration.  The application consists of four main components:  
- 1 - Web Server (web/app.py): This is a Flask application that exposes two endpoints, /classify and /get-result/<task_id>. The /classify endpoint accepts POST requests with the text to be classified, temperature, and model name. It validates the input, generates a unique task ID, and pushes the task to a Redis queue. The /get-result/<task_id> endpoint accepts GET requests with a task ID and returns the result of the task if it's completed.  
- 2 - Client (client/client.py): This is a Python script that interacts with the web server. It submits a classification task to the server and polls for the result at a given interval. The client handles the communication with the server, error handling, and result retrieval.  
- 3 - Tests (tests/*): This includes load tests using Locust to test the performance of the web application and some unit tests. The load test simulate user behavior by sending requests to the /classify endpoint and fetching results from the /get-result/<task_id> endpoint.
- 4 - Evaluation (evaluation/evaluate.py): This includes the evaluation of the model.
+This is a sample web application is designed around a text classification task using Language Models (LLMs). The application is built using Python and Flask for the web server, Redis for the messaging system, and Docker/Docker-compose for containerization and orchestration.  The application consists of four main components:
+ 1. **Web Server** (web/app.py): This is a Flask application that exposes two endpoints, /classify and /get-result/<task_id>. The /classify endpoint accepts POST requests with the text to be classified, temperature, and model name. It validates the input, generates a unique task ID, and pushes the task to a Redis queue. The classification task (/classify) is non blocking, meaning that it immediately return a response, but not the classification result. The /get-result/<task_id> endpoint accepts GET requests with a task ID and returns the result of the task if it's completed.  
+ 2. **Client** (client/client.py): This is a Python script that interacts with the web server. It simulates a request in polling. It submits a classification task to the server and polls for the result at a given interval. The client handles the communication with the server, error handling, and result retrieval.  
+ 3. **Tests** (tests/*): This includes load tests using Locust to test the performance of the web application and some unit tests. The load test simulate user behavior by sending requests to the /classify endpoint and fetching results from the /get-result/<task_id> endpoint.
+ 4. **Evaluation** (evaluation/evaluate.py): This includes the evaluation of the model.
 
 ## Launch the webapp
 To launch the webapp, you need to have `Docker` installed on your machine. 
